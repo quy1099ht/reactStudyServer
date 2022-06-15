@@ -1,9 +1,16 @@
 const Tasks = require("../models/Tasks")
 const mongodb = require("mongodb")
-const remakeTaskString = (task) => {
+const { MongoClient } = require('mongodb');
+const getAllWeather = async () => {
+    const url = 'mongodb+srv://quy1099ht:Quypro123@cluster0.icevc.mongodb.net';
+    const client = await MongoClient.connect(url);
+    var db = client.db("test")
+
+    const result = await db.collection("task").find()
+    console.log(result);
+    return result
 
 }
-
 exports.get = function (request, response) {
     Tasks.find({}, (err, tasks) => {
         if (err) {
@@ -56,4 +63,8 @@ exports.completeTask = (req, res) => {
         })
     })
 
+}
+
+exports.sample = (req,res) => {
+   return res.json( getAllWeather())
 }

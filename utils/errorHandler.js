@@ -1,0 +1,5 @@
+exports.errorHandler=(res) =>{
+    return {
+        
+    }
+}
